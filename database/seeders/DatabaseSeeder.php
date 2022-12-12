@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Country;
 use App\Models\Continent;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,11 +24,13 @@ class DatabaseSeeder extends Seeder
             ['id' => 5, 'name' => 'North America'],
         ];
 
-        foreach($continents as $continent) {
+        foreach ($continents as $continent) {
             Continent::factory()->create($continent)
-                    ->each(function($c) {
-                        $c->countries()->saveMany(Country::factory(10)->make());
-                    });
+                ->each(function ($c) {
+                    $c->countries()->saveMany(Country::factory(10)->make());
+                });
         }
+
+        Product::factory(100)->create();
     }
 }
